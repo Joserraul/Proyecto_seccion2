@@ -7,10 +7,11 @@ function jugador(){
   let escoger;
   while (true) {
     escoger = prompt("Escoge entre piedra, papel o tijera").toLowerCase();
-    if (escoger === "piedra" || escoger === "papel" || "tijera"){
+    if (escoger === "piedra" || escoger === "papel" ||  escoger === "tijera"){
       break
+    }else {
+      alert("No valido, intentalo nuevamente")
     }
-    alert("No valido, intentalo nuevamente")
   }
   return escoger;
 }
@@ -45,8 +46,7 @@ function ganador (player, computer){
 }
 
 /**
- * estoy cansado jefe, ahorita comento esto
- * nota:me falta acomodar lo de los empates y conteo de jugadas
+ * @function repetirJugada almacena toda la infomacion para usarla en el programa, primero tendremos unas variables con parametros numericos. que se usaran para almacenar la canidad de partidas.
  */
 
 function repetirJugada(){
@@ -54,11 +54,19 @@ function repetirJugada(){
   let victoriaJ = 0;
   let victoriaC = 0;
   let repetir;
-
+/**
+ * @do  para realizar una operacion una vez, en este caso vamos a usar las variables anteriores para generar resultados.
+ */
   do{
     const opcionPlayer = jugador();
     const opcionPc = computadora();
     const resultado = ganador(opcionPlayer, opcionPc);
+
+    /**
+     * Apartir desde aqui pondremos las condiciones para que le diga al usuario que es lo que  esta sucediendo
+     * @if el empate
+     * @else el primero para la vitoria , el segundo para la derrota
+     */
 
     alert(`Escogiste: ${opcionPlayer} la computadora escogio ${opcionPc}`);
 
@@ -72,12 +80,24 @@ function repetirJugada(){
       victoriaC++;
     }
 
+    /**
+     * aqui agregamos el conteo de partidas.
+     */
+
     partidas++;
+
+    /**
+     * @repetir aqui le damos la opcion (solo una vez) para que pueda reiniciar el juego
+     */
 
     repetir = prompt("Repetimos? (si/no)");
   } while(repetir === "si");
 
-  alert(`Terminamos y el resultado es: ${partidas} Jugador: ${victoriaJ} Enemigo: ${victoriaC}`);
+/**
+ * @alert este alert es para demostrar el resultado
+ */
+
+  alert(`Terminamos y el resultado es: Jugador: ${victoriaJ} Enemigo: ${victoriaC} de ${partidas} jugadas.`);
 }
 
 repetirJugada();
